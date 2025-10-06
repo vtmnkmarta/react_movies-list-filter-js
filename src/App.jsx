@@ -5,15 +5,15 @@ import { MoviesList } from './components/MoviesList';
 import moviesFromServer from './api/movies.json';
 
 function preparedFilms(moviesList, { query }) {
-  let movies = [...moviesList];
+  let movies = moviesList;
 
   if (query) {
     const normalisedQuery = query.trim().toLowerCase();
 
     movies = movies.filter(
       movie =>
-        movie.title.toLowerCase().includes(normalisedQuery) ||
-        movie.description.toLowerCase().includes(normalisedQuery),
+        (movie.title || '').toLowerCase().includes(normalisedQuery) ||
+        (movie.description || '').toLowerCase().includes(normalisedQuery),
     );
   }
 
